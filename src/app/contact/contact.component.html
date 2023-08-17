@@ -1,0 +1,36 @@
+
+<div class="container">
+<div class="card mt-5 p-3">
+
+    <label class="fs-3 text-center" align="center">Contactanos</label>
+
+    <form [formGroup]="formUser" (ngSubmit)="procesar()"> <!--Al darle al boton llama al metodo-->
+        <div class="card-body">
+            <div class="mb-2">
+                <label class="form-label">Nombre</label>
+                <input type="text" formControlName="nombre" class="form-control" placeholder="Ingrese su nombre" >
+                <div class="alert alert-danger mt-2 " [hidden]="nombre.valid || nombre.pristine">
+                        El nombre es obligatorio
+                </div>
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Email</label>
+                <input type="text" formControlName ="email" class="form-control" placeholder="Ingrese email">
+                <div class="alert alert-danger mt-2 " [hidden]="email.valid || email.pristine">
+                    <span  *ngIf="email.errors?.['required']">Email es obligatorio</span> 
+                    <!--entra al array si hay ese valor y si hay se vuelve falso e ignora los demas valores del arreglo-->
+                    <span  *ngIf="email.errors?.['email']">Email no es valido</span>
+                </div> 
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Mensaje</label>
+                <textarea class="form-control" type="text" formControlName="mensaje" cols="30" rows="10" placeholder="Deja tu mensaje aqui"></textarea>
+                <div class="alert alert-danger mt-2 " [hidden]="mensaje.valid || mensaje.pristine">
+                    El mensaje es obligatorio
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success" [disabled]="formUser.invalid"> Enviar</button> <!--al mommento de acceder al formuser si es invalido los campos-->
+    </form>
+    </div>
+</div>
